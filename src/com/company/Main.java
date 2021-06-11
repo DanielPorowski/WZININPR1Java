@@ -9,8 +9,8 @@ public class Main {
 
         Animal dog = new Animal( " dog");
 
-        Car passat = new Car("VW","passat", 100.0, "black", 1999.0);
-        me.car = passat;
+        Car passat = new Car("VW","passat", 100.0, "black", 1999.0, 1000.1);
+        me.setCar(passat);
         me.pet = dog;
 
 
