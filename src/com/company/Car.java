@@ -1,5 +1,6 @@
 package com.company;
 
+
 public class Car {
     public final String producer2;
     public final String model2;
@@ -15,5 +16,13 @@ public class Car {
         this.color = color;
         this.engineVolume = engineVolume;
         this.price = price;
+    }
+
+    public boolean equals(Object obj) {
+        return (this == obj);
+    }
+
+    public String toString(){
+        return "producer: "+producer2+"model2: "+model2+"color: "+color+"engineVolume: "+engineVolume+"price: "+price;
     }
 }

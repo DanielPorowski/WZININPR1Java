@@ -9,6 +9,10 @@ public class Human {
     private Car car;
     private Double salary;
 
+    public String toString(){
+        return "firstName: "+firstName+"lastName:  "+lastName+"phone:  "+phone+"pet:  "+pet+"car:  "+car+"salary:  "+salary;
+    }
+
     public String getPesel() {
         return pesel;
     }

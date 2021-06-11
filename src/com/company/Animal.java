@@ -10,6 +10,10 @@ public class Animal {
         this.species = species;
     }
 
+    public String toString(){
+        return "species: "+species+"weight: "+weight+"name: "+name+"furry: "+furry;
+    }
+
     public Animal(Double weight, String species) {
         this.species = species;
 
@@ -35,7 +39,7 @@ public class Animal {
         if (this.weight > 0){
             this.weight += 1.0;
             System.out.println("thx for food" + this.weight);
-            }
+        }
         else {
 
         }
