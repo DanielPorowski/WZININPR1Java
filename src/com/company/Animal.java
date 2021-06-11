@@ -44,14 +44,13 @@ public class Animal {
 
     void takeForWalk() {
         if (this.weight > 0){
-            this.weight += 1.0;
-            System.out.println("thx nice walk");
-            else {
-                System.out.println();
-            }
+            this.weight -= 0.2;
+            System.out.println("thx nice walk, ,y weight" + this.weight);
 
         }
-
+        else {
+            System.out.println("nie można łazić z martwym psem po ulicy ");
+        }
     }
 
     void printName() {

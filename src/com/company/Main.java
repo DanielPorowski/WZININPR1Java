@@ -1,30 +1,20 @@
 package com.company;
 
+
 public class Main {
 
     public static void main(String[] args) {
-        Animal dog = new Animal("Owczarek Niemiecki");
-
-        //dog.name = "Szarik";
-        //dog.weight = 12.0;
-        //dog.species = "Owczarek niemiecki";
-
-        System.out.println(dog.name);
+        Human me = new Human();
 
 
-        dog.printName();
-        dog.printNameAndOwner("Daniel");
-        String text = dog.getNameAndOwner("Daniel");
-        System.out.println(text);
+        Animal dog = new Animal( " dog");
 
-        Human daniel = new Human();
-        daniel.pet = dog;
-        daniel.firstName = "Daniel";
-        daniel.lastName = "JakisTam";
-
-        System.out.println(daniel.pet.species);
+        Car passat = new Car("VW","passat", 100.0, "black", 1999.0);
+        me.car = passat;
+        me.pet = dog;
 
 
 
     }
+
 }
