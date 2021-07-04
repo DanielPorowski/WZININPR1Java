@@ -7,11 +7,12 @@ import com.company.devices.Phone;
 public class Main {
 
     public static void main(String[] args) {
-        FarmAnimal farmAnimalek = new FarmAnimal("dog");
-        Pet petek = new Pet("dog");;
-        farmAnimalek.feed();
-        farmAnimalek.feed(20);
-        petek.feed();
-        petek.feed(15);
+        Human seller = new Human();
+        seller.phone = new Phone();
+        seller.pet = new Pet("dog");
+        Human buyer = new Human();
+        buyer.cash = 1000.;
+        seller.phone.sell(seller, buyer, 400.0);
+        seller.pet.sell(seller, buyer, 500.0);
     }
 }

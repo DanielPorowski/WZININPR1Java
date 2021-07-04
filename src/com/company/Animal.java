@@ -1,6 +1,6 @@
 package com.company;
 
-public abstract class Animal implements Feedable {
+public abstract class Animal implements Feedable, Sellable {
     final public String species;
     private Double weight;
     String name;
@@ -8,6 +8,23 @@ public abstract class Animal implements Feedable {
 
     public Animal(String species) {
         this.species = species;
+    }
+
+    public void sell(Human seller, Human buyer, Double price)
+    {
+        if (seller.pet != null)
+        {
+            if (buyer.cash >= price)
+            {
+                seller.cash += price;
+                buyer.cash -= price;
+
+                buyer.pet = seller.pet;
+                seller.pet = null;
+
+                System.out.println("Sprzedano zwierze za " + price + "pinindzy");
+            }
+        }
     }
 
     public String toString(){

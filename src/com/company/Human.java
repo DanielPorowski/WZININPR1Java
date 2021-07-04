@@ -5,9 +5,10 @@ import com.company.devices.Phone;
 import java.util.Date;
 
 public class Human {
+    public Phone phone;
     String firstName;
+    public Double cash = 0.0;
     String lastName;
-    Phone phone;
     Animal pet;
     private Car car;
     private Double salary;
