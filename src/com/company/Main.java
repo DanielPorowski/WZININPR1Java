@@ -7,10 +7,11 @@ import com.company.devices.Phone;
 public class Main {
 
     public static void main(String[] args) {
-        Car autko = new Car("Toyota", "Corolla", 123.2, "blue", 2.5, 123.45, 2021);
-        Phone telefonik = new Phone();
-
-        autko.TurnOn();
-        telefonik.TurnOn();
+        FarmAnimal farmAnimalek = new FarmAnimal("dog");
+        Pet petek = new Pet("dog");;
+        farmAnimalek.feed();
+        farmAnimalek.feed(20);
+        petek.feed();
+        petek.feed(15);
     }
 }

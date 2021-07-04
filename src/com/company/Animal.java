@@ -1,6 +1,6 @@
 package com.company;
 
-public class Animal {
+public abstract class Animal implements Feedable {
     final public String species;
     private Double weight;
     String name;
@@ -35,7 +35,7 @@ public class Animal {
         this.weight = weight;
     }
 
-    void feed() {
+    public void feed() {
         if (this.weight > 0){
             this.weight += 1.0;
             System.out.println("thx for food" + this.weight);
@@ -43,7 +43,10 @@ public class Animal {
         else {
 
         }
+    }
 
+    public void feed(int foodWeight) {
+        System.out.println("thx for food" + foodWeight);
     }
 
     void takeForWalk() {
