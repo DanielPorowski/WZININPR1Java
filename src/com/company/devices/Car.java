@@ -1,7 +1,7 @@
 package com.company.devices;
 
 
-public class Car extends Device {
+public abstract class Car extends Device {
     public final String producer;
     public final String model;
     public final int yearOfProduction;
@@ -32,4 +32,6 @@ public class Car extends Device {
     {
         System.out.println("Car turning on");
     }
+
+    abstract void refuel();
 }
