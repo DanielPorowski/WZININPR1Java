@@ -4,11 +4,11 @@ package com.company.devices;
 import com.company.Human;
 import com.company.Sellable;
 
-
 public abstract class Device implements Sellable {
     String producer;
     String model;
     int yearOfProduction;
+    Double value;
 
     abstract void TurnOn();
 
