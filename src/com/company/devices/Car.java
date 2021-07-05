@@ -60,7 +60,7 @@ public abstract class Car extends Device implements Sellable {
         }
         catch(IllegalAccessException e)
         {
-            System.out.println("caught in main.");
+            System.out.println("Transakcja nie powiodła się.");
         }
     }
 
