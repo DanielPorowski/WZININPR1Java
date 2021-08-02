@@ -3,11 +3,26 @@ package com.company;
 
 import com.company.devices.Application;
 import com.company.devices.Car;
+import com.company.devices.LPG;
 import com.company.devices.Phone;
 
 public class Main {
 
     public static void main(String[] args) {
+        Human seller = new Human();
+        Human buyer = new Human();
+        buyer.cash = 1000;
+        Car OldCar = new LPG("toyota", "corolla", 123.22, "blue", 2.2, 333.22, 2021, seller);
+        buyer.garage[0] = OldCar;
+        OldCar.sell(seller, buyer, 333.0);
+
+        System.out.println("Czy doszlo miedzy nimi do transakcji ? : " + OldCar.doesAsellB(seller, buyer));
+        System.out.println("Czy auto mialo wlasciciela ? : " + OldCar.hadOwner(buyer));
+        System.out.println("Liczba transakcji ? : " + OldCar.numberOfTransaction());
+
+
+
+        /*
         Human Daniel = new Human();
         Daniel.cash = 1000;
         Application app = new Application();
@@ -27,5 +42,6 @@ public class Main {
         tel.freeApps();
         System.out.println("Cost of all APPs: " + tel.costOfAllApps());
         tel.displayByPrice();
+ */
     }
 }

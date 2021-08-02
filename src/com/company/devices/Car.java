@@ -1,8 +1,8 @@
 package com.company.devices;
-
-
 import com.company.Human;
 import com.company.Sellable;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class Car extends Device implements Sellable {
     public final String producer;
@@ -12,10 +12,11 @@ public abstract class Car extends Device implements Sellable {
     public String color;
     public double engineVolume;
     public double price;
-    public Human[] owners;
+    public List<Human> owners = new ArrayList();
     public int transactionQuantity;
 
-    public Car(String producer, String model, Double millage, String color, Double engineVolume, Double price, int yearOfProduction){
+
+    public Car(String producer, String model, Double millage, String color, Double engineVolume, Double price, int yearOfProduction, Human owner){
         this.producer = producer;
         this.model = model;
         this.millage = millage;
@@ -23,7 +24,7 @@ public abstract class Car extends Device implements Sellable {
         this.engineVolume = engineVolume;
         this.price = price;
         this.yearOfProduction = yearOfProduction;
-        this.owners = new Human[3];
+        owners.add(owner);
         this.transactionQuantity = 0;
     }
 
@@ -43,11 +44,14 @@ public abstract class Car extends Device implements Sellable {
             {
                 throw new IllegalAccessException("Kupujacy nie ma pieniedzy");
             }
-            if (this.owners[2] != seller)
+            if (owners.get(owners.size()-1) != seller)
             {
                 throw new IllegalAccessException("Sprzedajacy nie jest aktualnym wlascicielem");
             }
-
+            if (owners.get(owners.size()-1) == buyer)
+            {
+                throw new IllegalAccessException("Kupujacy jest aktualnym wlascicielem");
+            }
             if (buyer.garage[0] == null)
             {
                 buyer.garage[0] = this;
@@ -61,11 +65,7 @@ public abstract class Car extends Device implements Sellable {
                 buyer.garage[2] = this;
             }
 
-            this.owners[0] = this.owners[1];
-            this.owners[1] = this.owners[2];
-            this.owners[2] = buyer;
-
-            transactionQuantity++;
+            owners.add(buyer);
 
             seller.cash += price;
             buyer.cash -= price;
@@ -83,23 +83,25 @@ public abstract class Car extends Device implements Sellable {
         return this.transactionQuantity;
     }
 
-    public boolean haveOwner()
-    {
-        boolean result = true;
-        if(this.owners[0] == null && this.owners[1] == null && this.owners[2] == null)
+
+        public boolean hadOwner(Human person)
         {
-            result = false;
+            return owners.contains(person);
         }
-        return result;
+
+
+    public boolean doesAsellB(Human seller, Human buyer)
+    {
+        if(this.hadOwner(seller) && this.hadOwner(buyer))
+            if (owners.indexOf(seller) == owners.indexOf(buyer)-1)
+                return true;
+
+        return false;
     }
 
-    public boolean doesAsellB(Human aaa, Human bbb)
+    public int numberOfTransaction()
     {
-        if (this.owners[2] == bbb && this.owners[1] == aaa)
-        {
-            return true;
-        }
-        return false;
+        return owners.size()-1;
     }
 
     public boolean equals(Object obj) {
