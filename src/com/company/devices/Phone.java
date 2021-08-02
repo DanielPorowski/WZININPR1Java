@@ -3,12 +3,10 @@ package com.company.devices;
 import com.company.Human;
 
 import java.net.URL;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.IntStream;
+import java.util.*;
 
 public class Phone extends Device {
-    public static final String address = "www.superapka.com";
+    public static final String address = "www.superapp.com";
     public static final String protocol = "http";
     public static final String version = "2.5.6";
     public String appName;
@@ -17,13 +15,12 @@ public class Phone extends Device {
     public int yearOfProduction;
     public Double screenSize;
     public String os;
-    public Application[] aplikacje;
-    public int numerApki = 0;
+    public Set<Application> applications = new TreeSet<>();
+    public int Appnumber = 0;
+    Comparator<Application> compareByPrice = (Application app1, Application app2) ->
+            app1.price.compareTo( app2.price );
 
-    public Phone()
-    {
-        aplikacje = new Application[10];
-    }
+
 
     public String toString(){
         return "producer "+producer+"model "+model+"screenSize "+screenSize+"os "+os+"year of prod: "+ yearOfProduction;
@@ -34,37 +31,69 @@ public class Phone extends Device {
         System.out.println("Phone turning on");
     }
 
-    public boolean czyJuzZainstalowana(String nazwaApki)
+    public boolean isItInstalled(Application app)
     {
-        return Arrays.asList(aplikacje).stream().filter(o -> o.nazwaApki.equals(nazwaApki)).findFirst().isPresent();
+        return applications.contains(app);
     }
-
-    public int iloscApek()
+    public boolean isItInstalled(String appName)
     {
-        return aplikacje.length;
-    }
-
-    public void wypiszApki()
-    {
-        for (int i = 0; i < aplikacje.length -1; i++) {
-if (this.aplikacje[i]!=null)
-{
-            System.out.print("Nazwa : " + this.aplikacje[i].nazwaApki);
-        }}
-    }
-
-    public void installAnnApp(Application apka, Human buyer)
-    {
-        if (buyer.cash >= apka.price)
-        {
-            aplikacje[numerApki]= apka;
-            numerApki++;
-            System.out.println("zainstalowano");
-            buyer.cash -= apka.price;
+        for(Application app: applications) {
+            if(app.appName == appName) return true;
         }
-
-        System.out.println("Nie mozna zainstalowac");
+        return false;
     }
+    public int appQuantity()
+    {
+        return applications.size();
+    }
+
+    public void displayApps()
+    {
+        for(Application app: applications) {
+            System.out.println("Name : " +app.appName);
+        }
+    }
+    public void freeApps()
+    {
+        for(Application app: applications) {
+            if(app.price == 0) System.out.println("Name : " +app.appName);
+        }
+    }
+
+    public double costOfAllApps()
+    {
+        double  sum = 0;
+        for(Application app: applications)
+            sum += app.price;
+
+        return sum;
+    }
+    public void installAnnApp(Application app, Human buyer)
+    {
+        if (buyer.cash >= app.price && !applications.contains(app))
+        {
+            applications.add(app);
+            System.out.println("Installed");
+            buyer.cash -= app.price;
+        }
+        else
+        {
+            System.out.println("Cant install an Application");
+        }
+    }
+    public void displayByPrice(){
+        List<Application> apps = new ArrayList();
+        for(Application app: applications)
+            apps.add(app);
+
+
+        Collections.sort(apps, compareByPrice);
+
+        for (Application app: apps)
+            System.out.println("Name: " + app.appName);
+    }
+
+
 
     public void installAnnApp(String appName)
     {

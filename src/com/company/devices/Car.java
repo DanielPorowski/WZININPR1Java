@@ -13,7 +13,7 @@ public abstract class Car extends Device implements Sellable {
     public double engineVolume;
     public double price;
     public Human[] owners;
-    public int iloscTransakcji;
+    public int transactionQuantity;
 
     public Car(String producer, String model, Double millage, String color, Double engineVolume, Double price, int yearOfProduction){
         this.producer = producer;
@@ -24,7 +24,7 @@ public abstract class Car extends Device implements Sellable {
         this.price = price;
         this.yearOfProduction = yearOfProduction;
         this.owners = new Human[3];
-        this.iloscTransakcji = 0;
+        this.transactionQuantity = 0;
     }
 
     public void sell(Human seller, Human buyer, Double price)
@@ -65,7 +65,7 @@ public abstract class Car extends Device implements Sellable {
             this.owners[1] = this.owners[2];
             this.owners[2] = buyer;
 
-            iloscTransakcji++;
+            transactionQuantity++;
 
             seller.cash += price;
             buyer.cash -= price;
@@ -78,12 +78,12 @@ public abstract class Car extends Device implements Sellable {
         }
     }
 
-    public int sprawdzIloscTransakcji()
+    public int checkTransactionQuantity()
     {
-        return this.iloscTransakcji;
+        return this.transactionQuantity;
     }
 
-    public boolean czyMialWlasciciela()
+    public boolean haveOwner()
     {
         boolean result = true;
         if(this.owners[0] == null && this.owners[1] == null && this.owners[2] == null)
@@ -93,7 +93,7 @@ public abstract class Car extends Device implements Sellable {
         return result;
     }
 
-    public boolean czyAsprzedalB(Human aaa, Human bbb)
+    public boolean doesAsellB(Human aaa, Human bbb)
     {
         if (this.owners[2] == bbb && this.owners[1] == aaa)
         {

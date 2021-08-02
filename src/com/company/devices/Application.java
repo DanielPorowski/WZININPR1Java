@@ -1,7 +1,12 @@
 package com.company.devices;
 
-public class Application {
+public class Application implements Comparable<Application> {
     public Double price;
-    public String nazwaApki;
-    public String wersja;
+    public String appName;
+    public String version;
+
+    @Override
+    public int compareTo(Application  app) {
+        return this.appName.compareTo(app.appName);
+    }
 }

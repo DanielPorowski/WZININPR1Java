@@ -22,7 +22,7 @@ public abstract class Animal implements Feedable, Sellable {
                 buyer.pet = seller.pet;
                 seller.pet = null;
 
-                System.out.println("Sprzedano zwierze za " + price + "pinindzy");
+                System.out.println("Animal was selled for " + price + "$$$$");
             }
         }
     }
@@ -73,7 +73,7 @@ public abstract class Animal implements Feedable, Sellable {
 
         }
         else {
-            System.out.println("nie można łazić z martwym psem po ulicy ");
+            System.out.println("You cant walk with dead dog on the street ");
         }
     }
 
